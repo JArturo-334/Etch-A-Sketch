@@ -1,7 +1,25 @@
 let currentColor = '#000';
+let grid_squares = 16;
 
-const conainer = document.querySelector('#container');
+const container = document.querySelector('#container');
 const colorPicker = document.querySelector('#colorP');
+const range_slider = document.querySelector("#gridRange");
+const output = document.querySelector("#gridNum");
+output.innerText = grid_squares +' x '+ grid_squares;
+
+window.onload = () =>{
+    createGrid(grid_squares);
+    range_slider.setAttribute('max', '100')
+    range_slider.setAttribute('min', '2')
+    range_slider.setAttribute('value', grid_squares)
+}
+
+range_slider.oninput = function() {
+    output.innerText = this.value +' x '+ this.value;
+    grid_squares = this.value;
+    clearGrid();
+    createGrid(grid_squares);
+}
 
 colorPicker.oninput = (e) => setColor(e.target.value);
 
@@ -18,8 +36,12 @@ function createGrid(grid_size){
         div.classList.add('div_style');
         div.addEventListener('mouseover', draw)
         div.addEventListener('mousedown', draw)
-        conainer.appendChild(div);
+        container.appendChild(div);
 }}
+
+function clearGrid(){
+    container.innerHTML = '';
+}
 
 let onmouseDown = false
 container.onmousedown = () => (onmouseDown = true)
@@ -28,8 +50,4 @@ container.onmouseup = () => (onmouseDown = false)
 function draw(e){
     if (e.type === 'mouseover' && !onmouseDown) return
     e.target.style.backgroundColor = currentColor;
-}
-
-window.onload = () =>{
-    createGrid(16);
 }
