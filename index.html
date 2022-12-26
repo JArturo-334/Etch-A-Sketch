@@ -8,11 +8,25 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Etch</h1>
-    <input id="colorP" type="color" />
-    <input type="range" id="gridRange" />
-    <p id="gridNum"></p>
-    <div id="container"></div>
+    <h1 class="title">Etch-A-Sketch</h1>
+
+    <section class="game">
+      <div class="controls">
+        <div class="Pick_color">
+          <label for="colorP">CHOOSE A COLOR</label>
+          <input id="colorP" type="color" />
+        </div>
+
+        <div class="range_inp">
+          <input type="range" id="gridRange" />
+          <label id="gridNum"></label>
+        </div>
+      </div>
+
+      <div class="grid_sec">
+        <div id="container"></div>
+      </div>
+    </section>
   </body>
 
   <script src="script.js"></script>
