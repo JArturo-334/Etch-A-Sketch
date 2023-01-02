@@ -5,7 +5,8 @@ const container = document.querySelector('#container');
 const colorPicker = document.querySelector('#colorP');
 const range_slider = document.querySelector("#gridRange");
 const output = document.querySelector("#gridNum");
-const clear_btn = document.querySelector('#clear_btn')
+const clear_btn = document.querySelector('#clear_btn');
+const eraser_btn = document.querySelector('#eraser');
 output.innerText = grid_squares +' x '+ grid_squares;
 
 window.onload = () =>{
@@ -15,20 +16,14 @@ window.onload = () =>{
     range_slider.setAttribute('value', grid_squares)
 }
 
-range_slider.oninput = function() {
-    output.innerText = this.value +' x '+ this.value;
-    grid_squares = this.value;
-    clearGrid();
-    createGrid(grid_squares);
-}
-
-clear_btn.addEventListener('click', () => {clearGrid();
-    createGrid(grid_squares);})
-
 colorPicker.oninput = (e) => setColor(e.target.value);
 
 function setColor(chosenColor){
     currentColor = chosenColor;
+}
+
+function eraser(){
+    currentColor = '#fff';
 }
 
 function createGrid(grid_size){
@@ -55,3 +50,17 @@ function draw(e){
     if (e.type === 'mouseover' && !onmouseDown) return
     e.target.style.backgroundColor = currentColor;
 }
+
+range_slider.oninput = function() {
+    output.innerText = this.value +' x '+ this.value;
+    grid_squares = this.value;
+    clearGrid();
+    createGrid(grid_squares);
+}
+
+eraser_btn.addEventListener('click', eraser);
+
+clear_btn.addEventListener('click', () => {
+    clearGrid();
+    createGrid(grid_squares);
+});

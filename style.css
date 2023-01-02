@@ -47,7 +47,6 @@
 
 #colorP{
     margin-left: 20px;
-    -webkit-appearance: none;
     width: 70px;
     height: 50px;
     border: none;
@@ -81,7 +80,7 @@
 .div_style{
     border-top: solid 1px #afafaf;
     border-left: solid 1px #afafaf;
-    background-color: rgb(255, 255, 255);
+    background-color: #fff;
 }
 
 .div_border_free{
