@@ -5,6 +5,7 @@ const container = document.querySelector('#container');
 const colorPicker = document.querySelector('#colorP');
 const range_slider = document.querySelector("#gridRange");
 const output = document.querySelector("#gridNum");
+const clear_btn = document.querySelector('#clear_btn')
 output.innerText = grid_squares +' x '+ grid_squares;
 
 window.onload = () =>{
@@ -21,12 +22,14 @@ range_slider.oninput = function() {
     createGrid(grid_squares);
 }
 
+clear_btn.addEventListener('click', () => {clearGrid();
+    createGrid(grid_squares);})
+
 colorPicker.oninput = (e) => setColor(e.target.value);
 
 function setColor(chosenColor){
     currentColor = chosenColor;
 }
-
 
 function createGrid(grid_size){
     container.style.setProperty('--grid-rows', grid_size);
@@ -42,6 +45,7 @@ function createGrid(grid_size){
 function clearGrid(){
     container.innerHTML = '';
 }
+
 
 let onmouseDown = false
 container.onmousedown = () => (onmouseDown = true)
