@@ -1,10 +1,12 @@
 let currentColor = '#000';
 let grid_squares = 16;
+let option = 'color';
 
 const container = document.querySelector('#container');
 const colorPicker = document.querySelector('#colorP');
 const range_slider = document.querySelector("#gridRange");
 const output = document.querySelector("#gridNum");
+const random_btn = document.querySelector('#random');
 const clear_btn = document.querySelector('#clear_btn');
 const eraser_btn = document.querySelector('#eraser');
 output.innerText = grid_squares +' x '+ grid_squares;
@@ -19,6 +21,7 @@ window.onload = () =>{
 colorPicker.oninput = (e) => setColor(e.target.value);
 
 function setColor(chosenColor){
+    option = 'color';
     currentColor = chosenColor;
 }
 
@@ -47,7 +50,16 @@ container.onmouseup = () => (onmouseDown = false)
 
 function draw(e){
     if (e.type === 'mouseover' && !onmouseDown) return
-    e.target.style.backgroundColor = currentColor;
+    switch(option){
+        case 'color':
+            e.target.style.backgroundColor = currentColor;
+        break;
+        case 'random':
+            random_color(e);
+        break;
+    }
+
+
 }
 
 range_slider.oninput = function() {
@@ -57,9 +69,20 @@ range_slider.oninput = function() {
     createGrid(grid_squares);
 }
 
+random_btn.addEventListener('click', () =>{
+    option = 'random';
+})
+
 eraser_btn.addEventListener('click', eraser);
 
 clear_btn.addEventListener('click', () => {
     clearGrid();
     createGrid(grid_squares);
 });
+
+function random_color(set_e){
+    const R = Math.floor(Math.random() * 255);
+    const G = Math.floor(Math.random() * 255);
+    const B = Math.floor(Math.random() * 255);
+    set_e.target.style.backgroundColor = `rgb(${R}, ${G}, ${B})`;
+}
