@@ -41,7 +41,6 @@ function clearGrid(){
     container.innerHTML = '';
 }
 
-
 let onmouseDown = false
 container.onmousedown = () => (onmouseDown = true)
 container.onmouseup = () => (onmouseDown = false)
