@@ -39,21 +39,27 @@
 /*COLOR PICKER*/
 .Pick_color{
     display: flex;
-    align-items: center;
     width: 215px;
+    height: 55px;
     margin: 25px 0px 25px 0px;
-    justify-content: center;
-    color: #fff;
-    background: #974242;
-    border-radius: 8px;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #ededed;
+    border: 0px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 12px -5px;
 }
 
 #colorP{
-    margin-left: 20px;
-    width: 70px;
+    width: 50px;
     height: 50px;
-    border: none;
     background-color: #0000;
+    border: none;
+}
+
+input[type='color']::-webkit-color-swatch {
+  border: none;
+  border-radius: 20px;
 }
 
 /*RANGE INPUT*/
